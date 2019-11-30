@@ -1,47 +1,81 @@
-xhr.open("GET", "/getRecipes");
+const express = require("express");
+const ajax = require("ajax");
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+var xhr = new XMLHttpRequest();
+var app = express();
+function tryit() {
+  $.ajax({
+    url: "/getRecipes",
+    method: "GET"
+  }).then(function(BeveragesJSON) {
+    let results = "";
+    for (var i = 0; i < result.rows.length; i++) {
+      results = BeveragesJSON.result.rows[i].recipe_name;
 
-xhr.responseType = "json";
+      $("#ulgarbage").append(results);
+    }
+  });
+}
 
-xhr.send();
+// xhr.open("GET", "/getRecipes");
 
-// the response is {"message": "Hello, world!"}
-xhr.onload = function() {
-  // let results = "";
-  // for (var i = 0; i < result.rows.length; i++) {
-  //   results = BeveragesJSON.result.rows[i].recipe_name;
+// xhr.responseType = "json";
 
-  //   $("#ulgarbage").append(results);}
-  if (xhr.readyState == 4 && xhr.status == 200) {
-    console.log("We have data!");
-    console.log(xhr.response);
+// xhr.send();
 
-    //var jsonData = JSON.parse(http.response);
-    // var ourTable = document.getElementById('table');
+// // the response is {"message": "Hello, world!"}
+// function search() {
+//     //alert("Hello Korbin!!!");
 
-    // ourTable.innerHTML =
-    // '<tr>' +
-    //     '<th>Title</th>' +
-    //     '<th>MORE CLICKS!!!</th>' +
-    // '</tr>';
+//     var searchTerm = document.getElementById("txtSearch").value;
 
-    // for (let i = 0; i < jsonData.Search.length; i++) {
-    //     var title = jsonData.Search[i].Title;
-    //     var id = jsonData.Search[i].imdbID;
+//     console.log(searchTerm);
 
-    //     // new row
-    //     var newRow = ourTable.insertRow(-1);
+//     var htmlapi = "http://www.omdbapi.com/";
+//     var params = "?apikey=964cfd45&s=" + searchTerm;
 
-    //     // new cell 1
-    //     var cell = newRow.insertCell(-1);
-    //     cell.innerHTML = title;
+//     var wholeURL = htmlapi + params;
 
-    //     // new cell 2
-    //     var cell2 = newRow.insertCell(-1);
-    //     cell2.innerHTML =
-    //     // v--- LOOK HOW NICE THIS IS!! ---v
-    //     `<button onclick="foo('${id}')">Details</button>`;
-    // }
-  } else {
-    console.log("nothing yet ...");
-  }
-};
+//     var http = new XMLHttpRequest();
+
+//     http.onload = function() {
+//         if (http.readyState == 4 && http.status == 200) {
+
+//             console.log("We have data!");
+//             console.log(http.response);
+
+//             var jsonData = JSON.parse(http.response);
+//             var ourTable = document.getElementById('table');
+
+//             ourTable.innerHTML =
+//             '<tr>' +
+//                 '<th>Title</th>' +
+//                 '<th>MORE CLICKS!!!</th>' +
+//             '</tr>';
+
+//             for (let i = 0; i < jsonData.Search.length; i++) {
+//                 var title = jsonData.Search[i].Title;
+//                 var id = jsonData.Search[i].imdbID;
+
+//                 // new row
+//                 var newRow = ourTable.insertRow(-1);
+
+//                 // new cell 1
+//                 var cell = newRow.insertCell(-1);
+//                 cell.innerHTML = title;
+
+//                 // new cell 2
+//                 var cell2 = newRow.insertCell(-1);
+//                 cell2.innerHTML =
+//                 // v--- LOOK HOW NICE THIS IS!! ---v
+//                 `<button onclick="foo('${id}')">Details</button>`;
+//             }
+
+//         } else {
+//             console.log("nothing yet ...");
+//         }
+//     };
+
+//     http.open('GET', wholeURL);
+//     http.send();
+// }
